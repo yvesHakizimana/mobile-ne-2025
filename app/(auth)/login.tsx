@@ -1,23 +1,26 @@
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter } from 'expo-router';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
-    KeyboardAvoidingView,
-    Platform,
-    SafeAreaView,
-    ScrollView,
-    Text,
-    TouchableOpacity,
-    View
+  KeyboardAvoidingView,
+  Platform,
+  SafeAreaView,
+  ScrollView,
+  Text,
+  TouchableOpacity,
+  View
 } from 'react-native';
 import { Button } from '../../components/common/Button';
+import { ErrorMessage } from '../../components/common/ErrorMessage';
 import { Input } from '../../components/common/Input';
+import { useErrorHandler } from '../../hooks/useErrorHandler';
 import { useAuthStore } from '../../store/authStore';
 
 export default function LoginScreen() {
   const router = useRouter();
-  const { login, isLoading, error, clearError } = useAuthStore();
+  const { login, isLoading, error: authError, clearError, isAuthenticated } = useAuthStore();
+  const { errorState, handleError, clearError: clearLocalError } = useErrorHandler();
   
   const [formData, setFormData] = useState({
     username: '',
@@ -30,13 +33,30 @@ export default function LoginScreen() {
   });
   
   const [showPassword, setShowPassword] = useState(false);
+  const [loginAttempted, setLoginAttempted] = useState(false);
+
+  // Clear errors when component mounts or when user starts typing
+  useEffect(() => {
+    clearError();
+    clearLocalError();
+  }, []);
+
+  // Navigate to dashboard only after successful authentication
+  useEffect(() => {
+    if (isAuthenticated && loginAttempted) {
+      // Small delay to ensure state is updated
+      setTimeout(() => {
+        router.replace('/(tabs)/');
+      }, 100);
+    }
+  }, [isAuthenticated, loginAttempted]);
 
   const validateForm = (): boolean => {
     const errors = { username: '', password: '' };
     let isValid = true;
 
     if (!formData.username.trim()) {
-      errors.username = 'Username is required';
+      errors.username = 'Email is required';
       isValid = false;
     } else if (!/\S+@\S+\.\S+/.test(formData.username)) {
       errors.username = 'Please enter a valid email address';
@@ -56,26 +76,52 @@ export default function LoginScreen() {
   };
 
   const handleLogin = async () => {
+    // Clear all previous errors
     clearError();
+    clearLocalError();
+    setLoginAttempted(false);
     
     if (!validateForm()) {
       return;
     }
 
-    const success = await login({
-      username: formData.username,
-      password: formData.password,
-    });
+    try {
+      setLoginAttempted(true);
+      
+      const success = await login({
+        username: formData.username,
+        password: formData.password,
+      });
 
-    if (success) {
-      router.replace('/(tabs)/');
+      // If login fails, the error will be in authError
+      if (!success) {
+        setLoginAttempted(false);
+        // Handle the error from auth store
+        if (authError) {
+          handleError({ message: authError, type: 'UNAUTHORIZED' });
+        }
+      }
+      // Navigation will happen in useEffect when isAuthenticated becomes true
+      
+    } catch (error: any) {
+      setLoginAttempted(false);
+      console.error('Login error:', error);
+      handleError(error);
     }
   };
 
   const updateField = (field: 'username' | 'password', value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
+    
+    // Clear field-specific errors
     if (formErrors[field]) {
       setFormErrors(prev => ({ ...prev, [field]: '' }));
+    }
+    
+    // Clear general errors when user starts typing
+    if (authError || errorState.error) {
+      clearError();
+      clearLocalError();
     }
   };
 
@@ -89,7 +135,18 @@ export default function LoginScreen() {
     setFormData(credentials);
     setFormErrors({ username: '', password: '' });
     clearError();
+    clearLocalError();
   };
+
+  const retryLogin = () => {
+    clearError();
+    clearLocalError();
+    handleLogin();
+  };
+
+  // Determine which error to show (prioritize local error handling)
+  const displayError = errorState.error || authError;
+  const hasError = !!(errorState.error || authError);
 
   return (
     <SafeAreaView className="flex-1 bg-white">
@@ -129,10 +186,14 @@ export default function LoginScreen() {
                 Login
               </Text>
 
-              {error && (
-                <View className="bg-red-50 border border-red-200 rounded-lg p-3 mb-4">
-                  <Text className="text-red-600 text-center">{error}</Text>
-                </View>
+              {/* Enhanced Error Display */}
+              {hasError && (
+                <ErrorMessage
+                  message={displayError}
+                  variant="inline"
+                  type={errorState.type === 'NETWORK_ERROR' ? 'network' : 'general'}
+                  onRetry={errorState.isRetryable ? retryLogin : undefined}
+                />
               )}
 
               <View className="space-y-4">
@@ -162,9 +223,10 @@ export default function LoginScreen() {
                 />
 
                 <Button
-                  title="Sign In"
+                  title={isLoading ? "Signing In..." : "Sign In"}
                   onPress={handleLogin}
                   isLoading={isLoading}
+                  disabled={isLoading}
                   className="mt-6"
                 />
               </View>
@@ -185,7 +247,12 @@ export default function LoginScreen() {
                   <TouchableOpacity
                     key={index}
                     onPress={() => fillDemoCredentials(credential)}
-                    className="bg-gray-50 border border-gray-200 rounded-lg p-4 active:bg-gray-100"
+                    disabled={isLoading}
+                    className={`border border-gray-200 rounded-lg p-4 ${
+                      isLoading 
+                        ? 'bg-gray-100 opacity-50' 
+                        : 'bg-gray-50 active:bg-gray-100'
+                    }`}
                   >
                     <View className="flex-row items-center">
                       <View className="bg-primary-100 p-2 rounded-full mr-3">
@@ -212,6 +279,7 @@ export default function LoginScreen() {
             <View className="mt-8">
               <TouchableOpacity 
                 onPress={() => router.back()}
+                disabled={isLoading}
                 className="flex-row items-center justify-center py-3"
               >
                 <Ionicons name="arrow-back" size={20} color="#6b7280" />

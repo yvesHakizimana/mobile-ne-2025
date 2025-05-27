@@ -1,42 +1,54 @@
-import { Ionicons } from '@expo/vector-icons';
-import { LinearGradient } from 'expo-linear-gradient';
-import { useRouter } from 'expo-router';
 import React, { useEffect, useState } from 'react';
 import {
-    RefreshControl,
-    SafeAreaView,
-    ScrollView,
-    Text,
-    TouchableOpacity,
-    View,
+  View,
+  Text,
+  ScrollView,
+  SafeAreaView,
+  TouchableOpacity,
+  RefreshControl,
 } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+import { useRouter } from 'expo-router';
+import { LinearGradient } from 'expo-linear-gradient';
 import { Card } from '../../components/common/Card';
-import { ErrorMessage } from '../../components/common/ErrorMessage';
 import { LoadingSpinner } from '../../components/common/LoadingSpinner';
+import { ErrorMessage } from '../../components/common/ErrorMessage';
+import { EmptyState } from '../../components/common/EmptyState';
 import { SpendingOverview } from '../../components/dashboard/SpendingOverview';
-import { formatPrice } from '../../lib/utils';
 import { useAuthStore } from '../../store/authStore';
 import { useExpenseStore } from '../../store/expenseStore';
+import { useErrorHandler } from '../../hooks/useErrorHandler';
+import { formatPrice } from '../../lib/utils';
 
 export default function DashboardScreen() {
   const router = useRouter();
   const { user, logout } = useAuthStore();
-  const { expenses, fetchExpenses, isLoading, error } = useExpenseStore();
+  const { expenses, fetchExpenses, isLoading } = useExpenseStore();
+  const { errorState, handleError, clearError, getErrorComponent } = useErrorHandler();
   const [refreshing, setRefreshing] = useState(false);
 
   useEffect(() => {
     if (user) {
-      // Fetch all expenses, not just user-specific ones for demo purposes
-      fetchExpenses();
+      loadExpenses();
     }
-  }, [user, fetchExpenses]);
+  }, [user]);
+
+  const loadExpenses = async () => {
+    try {
+      clearError();
+      await fetchExpenses();
+    } catch (error) {
+      handleError(error);
+    }
+  };
 
   const onRefresh = async () => {
     setRefreshing(true);
-    if (user) {
-      await fetchExpenses();
+    try {
+      await loadExpenses();
+    } finally {
+      setRefreshing(false);
     }
-    setRefreshing(false);
   };
 
   const getThisMonthExpenses = () => {
@@ -67,24 +79,18 @@ export default function DashboardScreen() {
   const thisMonthTotal = calculateMonthlyTotal(thisMonthExpenses);
   const recentExpenses = expenses.slice(0, 5);
 
-  // Debug logging
-  console.log('Dashboard Debug:', {
-    totalExpenses: expenses.length,
-    thisMonthExpenses: thisMonthExpenses.length,
-    sampleExpense: expenses[0],
-    thisMonthTotal
-  });
-
-  if (isLoading && expenses.length === 0) {
+  // Show loading spinner only on initial load
+  if (isLoading && expenses.length === 0 && !errorState.error) {
     return <LoadingSpinner fullScreen message="Loading dashboard..." />;
   }
 
-  if (error && expenses.length === 0) {
+  // Show error state if we have no data and an error
+  if (errorState.error && expenses.length === 0) {
+    const errorProps = getErrorComponent(onRefresh);
     return (
       <SafeAreaView className="flex-1 bg-gray-50">
         <ErrorMessage
-          message={error}
-          onRetry={onRefresh}
+          {...errorProps}
           variant="fullScreen"
         />
       </SafeAreaView>
@@ -117,14 +123,13 @@ export default function DashboardScreen() {
           </View>
         </View>
 
-        {/* Debug Info - Remove this in production */}
-        <View className="px-6 mb-4">
-          <Card>
-            <Text className="text-sm text-gray-600">
-              Debug: {expenses.length} total expenses, {thisMonthExpenses.length} this month
-            </Text>
-          </Card>
-        </View>
+        {/* Show inline error if we have data but there was an error */}
+        {errorState.error && expenses.length > 0 && (
+          <ErrorMessage
+            {...getErrorComponent(onRefresh)}
+            variant="inline"
+          />
+        )}
 
         {/* Total Balance Card */}
         <View className="px-6 mb-6">
@@ -225,30 +230,25 @@ export default function DashboardScreen() {
               })}
             </Card>
           ) : (
-            <Card>
-              <View className="items-center py-8">
-                <Ionicons name="receipt-outline" size={48} color="#9ca3af" />
-                <Text className="text-gray-500 text-center mt-4">
-                  No expenses yet. Start by adding your first expense!
-                </Text>
-                <TouchableOpacity
-                  onPress={() => router.push('/expenses/new')}
-                  className="mt-4 bg-primary-600 px-6 py-3 rounded-lg"
-                >
-                  <Text className="text-white font-semibold">Add Expense</Text>
-                </TouchableOpacity>
-              </View>
-            </Card>
+            <EmptyState
+              title="No expenses yet"
+              description="Start by adding your first expense to track your spending!"
+              actionText="Add Expense"
+              onAction={() => router.push('/expenses/new')}
+              variant="default"
+            />
           )}
         </View>
 
-        {/* Spending Overview - Always show if we have ANY expenses */}
-        <View className="px-6 mb-6">
-          <Text className="text-gray-900 text-lg font-semibold mb-4">
-            Spending Overview
-          </Text>
-          <SpendingOverview expenses={expenses} />
-        </View>
+        {/* Spending Overview */}
+        {expenses.length > 0 && (
+          <View className="px-6 mb-6">
+            <Text className="text-gray-900 text-lg font-semibold mb-4">
+              Spending Overview
+            </Text>
+            <SpendingOverview expenses={expenses} />
+          </View>
+        )}
       </ScrollView>
     </SafeAreaView>
   );

@@ -1,47 +1,67 @@
 import api from '../config/axios.config';
 import { API_ENDPOINTS } from '../config/constants';
 import { CreateExpenseData, Expense } from '../types/expense.types';
+import apiService, { ApiError, ApiErrorType } from './apiService';
 
 class ExpenseService {
   async getAllExpenses(): Promise<Expense[]> {
     try {
-      const response = await api.get(API_ENDPOINTS.EXPENSES);
-      return response.data || [];
+      // Use the enhanced API service instead of direct axios
+      const expenses = await apiService.getExpenses();
+      return expenses || [];
     } catch (error: any) {
-      console.error('Get expenses error:', error);
-      throw new Error('Failed to fetch expenses');
+      const apiError = error as ApiError;
+      
+      // Log for debugging but let the enhanced error bubble up
+      console.error('Get expenses error:', {
+        type: apiError.type,
+        message: apiError.message,
+        status: apiError.status
+      });
+      
+      // Rethrow the enhanced error for the store to handle
+      throw apiError;
     }
   }
   
   async getExpenseById(id: string): Promise<Expense> {
     try {
-      const response = await api.get(API_ENDPOINTS.EXPENSE_BY_ID(id));
-      return response.data;
+      // Use enhanced API service with fallback to cached data
+      const response = await apiService.makeRequestWithRetry(
+        () => api.get(API_ENDPOINTS.EXPENSE_BY_ID(id), { timeout: 10000 }),
+        `expense_${id}` // Cache individual expenses
+      );
+      return response;
     } catch (error: any) {
-      console.error('Get expense by ID error:', error);
-      throw new Error('Failed to fetch expense details');
+      const apiError = error as ApiError;
+      console.error('Get expense by ID error:', apiError);
+      throw apiError;
     }
   }
   
   async createExpense(data: CreateExpenseData): Promise<Expense> {
     try {
-      const response = await api.post(API_ENDPOINTS.EXPENSES, {
+      const expenseData = {
         ...data,
         createdAt: new Date().toISOString(),
-      });
-      return response.data;
+      };
+      
+      const newExpense = await apiService.createExpense(expenseData);
+      return newExpense;
     } catch (error: any) {
-      console.error('Create expense error:', error);
-      throw new Error('Failed to create expense');
+      const apiError = error as ApiError;
+      console.error('Create expense error:', apiError);
+      throw apiError;
     }
   }
   
   async deleteExpense(id: string): Promise<void> {
     try {
-      await api.delete(API_ENDPOINTS.EXPENSE_BY_ID(id));
+      await apiService.deleteExpense(id);
     } catch (error: any) {
-      console.error('Delete expense error:', error);
-      throw new Error('Failed to delete expense');
+      const apiError = error as ApiError;
+      console.error('Delete expense error:', apiError);
+      throw apiError;
     }
   }
   
@@ -50,8 +70,9 @@ class ExpenseService {
       const allExpenses = await this.getAllExpenses();
       return allExpenses.filter(expense => expense.userId === userId);
     } catch (error: any) {
-      console.error('Get user expenses error:', error);
-      throw new Error('Failed to fetch user expenses');
+      const apiError = error as ApiError;
+      console.error('Get user expenses error:', apiError);
+      throw apiError;
     }
   }
 }
