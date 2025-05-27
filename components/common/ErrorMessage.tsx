@@ -1,7 +1,7 @@
-import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
+import React from 'react';
+import { Text, TouchableOpacity, View } from 'react-native';
 import { Card } from './Card';
 
 interface ErrorMessageProps {
@@ -123,7 +123,7 @@ export function ErrorMessage({
     );
   }
 
-  // Card variant (default) - Fixed the JSX structure
+  // Card variant (default)
   return (
     <Card className="m-4">
       <View className="items-center py-6">
