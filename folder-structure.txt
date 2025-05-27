@@ -1,0 +1,60 @@
+mobile-ne-2025/
+├── app/                           # Expo Router screens
+│   ├── (auth)/                    # Auth group - unauthenticated routes
+│   │   ├── _layout.tsx            # Auth layout
+│   │   └── login.tsx              # Login screen
+│   │
+│   ├── (tabs)/                    # Tab navigation group - authenticated routes
+│   │   ├── _layout.tsx            # Tab layout
+│   │   ├── index.tsx              # Dashboard (Home tab)
+│   │   ├── expenses/              # Expenses tab and nested routes
+│   │   │   ├── _layout.tsx        # Expenses stack layout
+│   │   │   ├── index.tsx          # List all expenses
+│   │   │   ├── [id].tsx           # View expense details
+│   │   │   └── new.tsx            # Add new expense
+│   │   │
+│   │   └── settings.tsx           # Settings tab
+│   │
+│   └── _layout.tsx                # Root layout
+│
+├── components/                    # Reusable UI components
+│   ├── common/
+│   │   ├── Button.tsx
+│   │   ├── Input.tsx
+│   │   ├── Card.tsx
+│   │   ├── LoadingSpinner.tsx
+│   │   └── ErrorMessage.tsx
+│   │
+│   ├── expenses/
+│   │   ├── ExpenseCard.tsxthen we are going to continue the hooks which will be using services  
+│   └── dashboard/
+│       └── SpendingOverview.tsx
+│
+├── hooks/                         # Custom React hooks
+│   ├── useAuth.ts
+│   ├── useExpenses.ts
+│   └── useForm.ts
+│
+├── services/                      # API service layer
+│   ├── authService.ts
+│   └── expenseService.ts
+│
+├── config/                        # Configuration files
+│   ├── axios.config.ts
+│   └── constants.ts
+│
+├── types/                         # TypeScript type definitions
+│   ├── auth.types.ts
+│   └── expense.types.ts
+│
+├── utils/                         # Utility functions
+│   ├── validation.ts
+│   ├── formatters.ts
+│   └── storage.ts
+│
+├── store/                         # Zustand store
+│   ├── authStore.ts
+│   └── expenseStore.ts
+│
+└── data/
+    └── fallbackData.ts            # Offline fallback data

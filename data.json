@@ -1,0 +1,201 @@
+{
+  "users": [
+    {
+      "createdAt": "2025-02-11T16:44:04.425Z",
+      "username": "Rosemary.Auer@gmail.com",
+      "password": "IoqOWrplBc9lqjI",
+      "id": "1"
+    },
+    {
+      "createdAt": "2025-02-12T06:51:13.411Z",
+      "username": "Rosalyn59@hotmail.com",
+      "password": "GjFIrSgyliG8tW5",
+      "id": "2"
+    },
+    {
+      "createdAt": "2025-02-12T04:28:28.334Z",
+      "username": "Maci94@hotmail.com",
+      "password": "R0ChVUODGqjwaAF",
+      "id": "3"
+    },
+    {
+      "createdAt": "2025-02-11T17:45:50.993Z",
+      "username": "Jessy17@hotmail.com",
+      "password": "Z8dUJaJvPoy4Ahm",
+      "id": "4"
+    },
+    {
+      "createdAt": "2025-02-11T15:39:06.277Z",
+      "username": "Winona88@gmail.com",
+      "password": "K1WhMnOMjFPMk7J",
+      "id": "5"
+    }
+  ],
+  "expenses": [
+    {
+      "createdAt": "2025-02-11T10:59:05.836Z",
+      "name": "Mr. Ramiro Hettinger",
+      "amount": "97.42",
+      "description": "orchid",
+      "id": "7",
+      "userId": "1",
+      "category": "Shopping",
+      "date": "2025-02-11T10:59:05.836Z"
+    },
+    {
+      "createdAt": "2025-02-11T19:23:56.983Z",
+      "name": "Angie Funk",
+      "amount": "253.15",
+      "description": "male",
+      "id": "9",
+      "userId": "1",
+      "category": "Entertainment",
+      "date": "2025-02-11T19:23:56.983Z"
+    },
+    {
+      "createdAt": "2025-02-11T14:22:26.897Z",
+      "name": "Brett Schinner",
+      "amount": "753.85",
+      "description": "Incredible",
+      "id": "11",
+      "userId": "2",
+      "category": "Housing",
+      "date": "2025-02-11T14:22:26.897Z"
+    },
+    {
+      "createdAt": "2025-02-12T07:07:07.151Z",
+      "name": "Maggie Tillman",
+      "amount": "967.99",
+      "description": "Tennessee",
+      "id": "12",
+      "userId": "1",
+      "category": "Transportation",
+      "date": "2025-02-12T07:07:07.151Z"
+    },
+    {
+      "createdAt": "2025-02-11T14:19:33.938Z",
+      "name": "Ms. Rafael Harber",
+      "amount": "811.67",
+      "description": "copy",
+      "id": "13",
+      "userId": "3",
+      "category": "Food",
+      "date": "2025-02-11T14:19:33.938Z"
+    },
+    {
+      "createdAt": "2025-05-26T15:34:34.052Z",
+      "name": "Ginger Little",
+      "amount": "211.22",
+      "description": "Groceries",
+      "id": "49",
+      "userId": "1",
+      "category": "Food",
+      "date": "2025-05-26T15:34:34.052Z"
+    },
+    {
+      "createdAt": "2025-05-26T16:43:09.411Z",
+      "name": "Kelly Ritchie",
+      "amount": "7886",
+      "description": "food",
+      "id": "52",
+      "userId": "2",
+      "category": "Food",
+      "date": "2025-05-27T06:18:53.426Z"
+    },
+    {
+      "createdAt": "2025-05-26T08:16:00.385Z",
+      "name": "Rosemary.Auer@gmail.com",
+      "amount": "497.76",
+      "description": "Southwest",
+      "id": "53",
+      "userId": "1",
+      "category": "Travel",
+      "date": "2025-05-26T08:16:00.385Z"
+    },
+    {
+      "createdAt": "2025-05-26T18:18:06.532Z",
+      "name": "Bobbie Wolff",
+      "amount": "1000",
+      "description": "Being smart",
+      "id": "55",
+      "category": "Clothes",
+      "date": "2025-07-18",
+      "userId": "4"
+    },
+    {
+      "createdAt": "2025-05-27T07:19:54.781Z",
+      "name": "Rent",
+      "amount": "1200.00",
+      "description": "House payment for two months",
+      "id": "65",
+      "userId": "3",
+      "category": "Housing",
+      "date": "2025-05-27T07:19:54.781Z"
+    },
+    {
+      "createdAt": "2025-05-26T15:40:09.200Z",
+      "name": "Buy Jordans",
+      "amount": "150",
+      "description": "New jordans for the upcoming prom party",
+      "id": "69",
+      "userId": "5",
+      "category": "Shopping",
+      "date": "2025-05-26T15:40:09.200Z"
+    },
+    {
+      "createdAt": "2025-05-27T02:21:11.586Z",
+      "name": "Roberta Mosciski-Prosacco",
+      "amount": "20",
+      "description": "potatoes",
+      "id": "71",
+      "userId": "1",
+      "category": "Food",
+      "date": "2025-05-27T07:22:00.000Z"
+    }
+  ],
+  "budgets": [
+    {
+      "id": "1",
+      "userId": "1",
+      "category": "Food",
+      "amount": "500.00",
+      "period": "monthly",
+      "startDate": "2025-05-01T00:00:00.000Z",
+      "endDate": "2025-05-31T23:59:59.000Z",
+      "createdAt": "2025-04-28T09:15:00.000Z"
+    },
+    {
+      "id": "2",
+      "userId": "1",
+      "category": "Transportation",
+      "amount": "300.00",
+      "period": "monthly",
+      "startDate": "2025-05-01T00:00:00.000Z",
+      "endDate": "2025-05-31T23:59:59.000Z",
+      "createdAt": "2025-04-28T09:15:00.000Z"
+    },
+    {
+      "id": "3", 
+      "userId": "2",
+      "category": "Shopping",
+      "amount": "200.00",
+      "period": "weekly",
+      "startDate": "2025-05-01T00:00:00.000Z",
+      "endDate": "2025-05-31T23:59:59.000Z",
+      "createdAt": "2025-04-28T09:15:00.000Z"
+    }
+  ],
+  "categories": [
+    "Food",
+    "Transportation",
+    "Housing",
+    "Utilities",
+    "Entertainment",
+    "Shopping",
+    "Healthcare",
+    "Education",
+    "Travel",
+    "Clothes",
+    "Other"
+  ]
+}

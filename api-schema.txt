@@ -1,0 +1,500 @@
+===== TESTING USERS API =====
+
+1. Testing GET all users:
+GET request to https://67ac71475853dfff53dab929.mockapi.io/api/v1/users
+Response: [
+  {
+    createdAt: '2025-02-11T16:44:04.425Z',
+    username: 'Rosemary.Auer@gmail.com',
+    password: 'IoqOWrplBc9lqjI',
+    id: '1'
+  },
+  {
+    createdAt: '2025-02-12T06:51:13.411Z',
+    username: 'Rosalyn59@hotmail.com',
+    password: 'GjFIrSgyliG8tW5',
+    id: '2'
+  },
+  {
+    createdAt: '2025-02-12T04:28:28.334Z',
+    username: 'Maci94@hotmail.com',
+    password: 'R0ChVUODGqjwaAF',
+    id: '3'
+  },
+  {
+    createdAt: '2025-02-11T17:45:50.993Z',
+    username: 'Jessy17@hotmail.com',
+    password: 'Z8dUJaJvPoy4Ahm',
+    id: '4'
+  },
+  {
+    createdAt: '2025-02-11T15:39:06.277Z',
+    username: 'Winona88@gmail.com',
+    password: 'K1WhMnOMjFPMk7J',
+    id: '5'
+  },
+  {
+    createdAt: '2025-02-12T00:34:52.526Z',
+    username: 'Maverick.Nienow32@hotmail.com',
+    password: 'xvOfsq26TCP9C1Y',
+    id: '6'
+  },
+  {
+    createdAt: '2025-02-11T21:12:37.780Z',
+    username: 'Columbus0@hotmail.com',
+    password: 'N68NH5rZrnzHMgn',
+    id: '7'
+  },
+  {
+    createdAt: '2025-02-12T07:43:19.232Z',
+    username: 'Ahmad.Jerde@yahoo.com',
+    password: 'rQ0X9rjLlKaCbJx',
+    id: '8'
+  },
+  {
+    createdAt: '2025-02-12T09:14:41.052Z',
+    username: 'Barry.Monahan@gmail.com',
+    password: 'dtqdHjOImgGl63f',
+    id: '9'
+  },
+  {
+    createdAt: '2025-02-12T02:26:16.018Z',
+    username: 'Vergie67@yahoo.com',
+    password: 'NcYi4Zt0iBXHYVq',
+    id: '10'
+  },
+  {
+    createdAt: '2025-02-11T12:05:39.114Z',
+    username: 'Vilma.Pfannerstill27@gmail.com',
+    password: 'KmdwL85SwttACMm',
+    id: '11'
+  },
+  {
+    createdAt: '2025-02-11T18:56:25.912Z',
+    username: 'Ali.Hirthe@hotmail.com',
+    password: 'iY_2KCwBK29rZRh',
+    id: '12'
+  },
+  {
+    createdAt: '2025-02-11T14:48:23.683Z',
+    username: 'Austen.Bayer@gmail.com',
+    password: 'XvAcXYlYDTgjpDf',
+    id: '13'
+  },
+  {
+    createdAt: '2025-02-12T07:06:08.499Z',
+    username: 'Idell_Rau@yahoo.com',
+    password: 'nX8Roob3UkIGsxu',
+    id: '14'
+  },
+  {
+    createdAt: '2025-02-11T10:17:18.390Z',
+    username: 'Carol_Schaden7@gmail.com',
+    password: 'h3UedHVY1fwv0ie',
+    id: '15'
+  },
+  {
+    createdAt: '2025-02-12T03:46:45.845Z',
+    username: 'Oswaldo50@gmail.com',
+    password: '7tvT9_v1Tra84yI',
+    id: '16'
+  },
+  {
+    createdAt: '2025-02-12T05:12:34.305Z',
+    username: 'Griffin_Daugherty@gmail.com',
+    password: '5d08l1AWh5Lrw9O',
+    id: '17'
+  },
+  {
+    createdAt: '2025-02-12T04:51:10.858Z',
+    username: 'Lori_Quitzon76@gmail.com',
+    password: 'uq3o1lAAPl69BXF',
+    id: '18'
+  },
+  {
+    createdAt: '2025-02-11T21:11:03.514Z',
+    username: 'Jerome_Roberts85@gmail.com',
+    password: 'xeauezK6IdQyDxa',
+    id: '19'
+  },
+  {
+    createdAt: '2025-02-11T22:48:27.542Z',
+    username: 'Jerad.Ratke@yahoo.com',
+    password: 'aJgOpsH16MDc8F_',
+    id: '20'
+  },
+  {
+    createdAt: '2025-02-11T14:26:04.105Z',
+    username: 'Corrine61@hotmail.com',
+    password: 'pX85004OBK5a_Ga',
+    id: '21'
+  },
+  {
+    createdAt: '2025-02-11T11:49:49.233Z',
+    username: 'Nick67@yahoo.com',
+    password: 'pKecJs7tJSt3LGh',
+    id: '22'
+  },
+  {
+    createdAt: '2025-02-12T03:46:28.449Z',
+    username: 'Gina.Nitzsche@yahoo.com',
+    password: 'oaFzxhbn2Xpy5wp',
+    id: '23'
+  },
+  {
+    createdAt: '2025-02-11T12:37:54.344Z',
+    username: 'Orion86@hotmail.com',
+    password: '4Do6mhIOnkoDV6s',
+    id: '24'
+  },
+  {
+    createdAt: '2025-02-12T03:30:24.042Z',
+    username: 'Reece_Moore@gmail.com',
+    password: '4QocEkXht1UkrCz',
+    id: '25'
+  },
+  {
+    createdAt: '2025-02-12T02:45:58.935Z',
+    username: 'Idell.Schimmel@hotmail.com',
+    password: 'GU7ygpQpfR8BnDX',
+    id: '26'
+  },
+  {
+    createdAt: '2025-02-12T00:54:42.454Z',
+    username: 'Linnie_Pacocha13@hotmail.com',
+    password: 'af05ClO2f7PmW1Y',
+    id: '27'
+  },
+  {
+    createdAt: '2025-02-11T14:13:58.159Z',
+    username: 'Narciso_Gutkowski@yahoo.com',
+    password: 'A_9rdMMQQPaGvuo',
+    id: '28'
+  },
+  {
+    createdAt: '2025-02-11T23:44:29.921Z',
+    username: 'Bailey_Rowe34@gmail.com',
+    password: 'ikDMUwTM61AUf7e',
+    id: '29'
+  },
+  {
+    createdAt: '2025-02-12T04:31:35.168Z',
+    username: 'Carolanne8@gmail.com',
+    password: 'TANeB9LAUmZDEPF',
+    id: '30'
+  },
+  {
+    createdAt: '2025-02-12T06:33:24.435Z',
+    username: 'Nicolas_Bergstrom@gmail.com',
+    password: 'nUceYp6lBLtmyUz',
+    id: '31'
+  },
+  {
+    createdAt: '2025-02-11T14:16:04.675Z',
+    username: 'Hazel89@hotmail.com',
+    password: '2_m_R7T9Wgznv9Z',
+    id: '32'
+  },
+  {
+    createdAt: '2025-02-11T23:04:43.391Z',
+    username: 'Bertha_Klocko60@yahoo.com',
+    password: 'NYwnRGHR15Lo4MB',
+    id: '33'
+  },
+  {
+    createdAt: '2025-05-27T06:05:16.302Z',
+    username: 'Jennifer1@hotmail.com',
+    password: 'YvpcAuKs9axwwW1',
+    id: '34'
+  },
+  {
+    createdAt: '2025-05-26T16:20:00.085Z',
+    username: 'Donald20@hotmail.com',
+    password: 'cSfmwvcISCmgELV',
+    id: '35'
+  },
+  {
+    createdAt: '2025-05-26T21:37:31.008Z',
+    username: 'Angelo.Jenkins86@yahoo.com',
+    password: 'f6eM7jc29CnLUYr',
+    id: '36'
+  },
+  {
+    createdAt: '2025-05-26T09:37:01.688Z',
+    username: 'Theodora_Heidenreich46@gmail.com',
+    password: '60Q3LkvhM4KWYmN',
+    id: '37'
+  },
+  {
+    createdAt: '2025-05-26T13:26:38.605Z',
+    username: 'Damon74@gmail.com',
+    password: 'n2qutdldx7ebIco',
+    id: '38'
+  },
+  {
+    createdAt: '2025-05-26T09:32:05.363Z',
+    username: 'Lucienne_Price24@hotmail.com',
+    password: 'imnQtlDZ5jbgE1J',
+    id: '39'
+  },
+  {
+    createdAt: '2025-05-26T13:34:10.100Z',
+    username: 'Rylee_Abernathy2@gmail.com',
+    password: 'mcYROnYbqTUiN_f',
+    id: '40'
+  },
+  {
+    createdAt: '2025-05-26T10:49:14.364Z',
+    username: 'Kari_Corwin@hotmail.com',
+    password: 'iemAC9NxeEDSeVP',
+    id: '41'
+  },
+  {
+    createdAt: '2025-05-27T01:28:10.542Z',
+    username: 'Rhett_Cruickshank@gmail.com',
+    password: 'o6ObCewmXdytVyw',
+    id: '42'
+  },
+  {
+    createdAt: '2025-05-27T03:45:26.072Z',
+    username: 'Yadira.Graham54@yahoo.com',
+    password: 'wUc66NTPcypvpKk',
+    id: '43'
+  },
+  {
+    createdAt: '2025-05-26T14:47:28.035Z',
+    username: 'Ladarius.Tillman38@yahoo.com',
+    password: 'L3REUQEdBz3PGho',
+    id: '44'
+  },
+  {
+    createdAt: '2025-05-27T02:11:44.971Z',
+    username: 'Rachael_Ernser@yahoo.com',
+    password: 'MrC6ZnwB7z30TVO',
+    id: '45'
+  },
+  {
+    createdAt: '2025-05-26T19:03:59.021Z',
+    username: 'Jazmyne72@hotmail.com',
+    password: 'TfEHGCAfO5aTMjK',
+    id: '46'
+  },
+  {
+    createdAt: '2025-05-26T22:49:01.628Z',
+    username: 'Kari74@yahoo.com',
+    password: 'sWjf9mZ4RfxHDSS',
+    id: '47'
+  },
+  {
+    createdAt: '2025-05-26T17:04:52.084Z',
+    username: 'Makenna.Auer@yahoo.com',
+    password: 'Goyclc1_w5SIRxg',
+    id: '48'
+  },
+  {
+    createdAt: '2025-05-26T20:48:02.576Z',
+    username: 'Jacinto45@gmail.com',
+    password: 'paeabR5LIfyFI2O',
+    id: '49'
+  },
+  {
+    createdAt: '2025-05-26T12:47:55.431Z',
+    username: 'Elena.Fay@yahoo.com',
+    password: 'WcJqt4hFrXD2IiV',
+    id: '50'
+  }
+]
+
+2. Testing GET user by username (Rosemary.Auer@gmail.com):
+GET request to https://67ac71475853dfff53dab929.mockapi.io/api/v1/users?username=Rosemary.Auer@gmail.com
+Response: [
+  {
+    createdAt: '2025-02-11T16:44:04.425Z',
+    username: 'Rosemary.Auer@gmail.com',
+    password: 'IoqOWrplBc9lqjI',
+    id: '1'
+  }
+]
+
+===== TESTING EXPENSES API =====
+
+1. Testing GET all expenses:
+GET request to https://67ac71475853dfff53dab929.mockapi.io/api/v1/expenses
+Response: [
+  {
+    createdAt: '2025-05-26T16:43:09.411Z',
+    name: 'Kelly Ritchie',
+    amount: 7886,
+    description: 'food',
+    id: '52',
+    userId: '2',
+    category: 'Food',
+    date: '2025-05-27T06:18:53.426Z'
+  },
+  {
+    createdAt: '2025-05-26T08:16:00.385Z',
+    name: 'Rosemary.Auer@gmail.com',
+    amount: '497.76',
+    description: 'Southwest',
+    id: '53'
+  },
+  {
+    createdAt: '2025-05-26T08:10:51.189Z',
+    name: 'Ernesto Roberts',
+    amount: 60,
+    description: 'Cakes',
+    id: '54',
+    userId: '4',
+    category: 'Food',
+    date: '2025-05-27T07:08:16.719Z'
+  },
+  {
+    createdAt: '2025-05-26T18:18:06.532Z',
+    name: 'Bobbie Wolff',
+    amount: 1000,
+    description: 'Being smart ',
+    id: '55',
+    category: 'Clothes',
+    date: '2025-07-18'
+  },
+  {
+    createdAt: '2025-05-26T19:53:34.539Z',
+    name: 'Delia Jakubowski',
+    amount: 90,
+    description: 'Food',
+    id: '57',
+    userId: '4',
+    category: 'Food',
+    date: '2025-05-27T07:10:30.586Z'
+  },
+  {
+    createdAt: '2025-05-27T04:43:28.254Z',
+    name: 'Jean Wunsch',
+    amount: 90,
+    description: 'Shoes',
+    id: '58',
+    userId: '4',
+    category: 'Shopping',
+    date: '2025-05-27T07:12:42.634Z'
+  },
+  {
+    createdAt: '2025-05-26T07:15:00.000Z',
+    name: 'Liza Louange',
+    amount: '12000.00',
+    description: 'rent',
+    id: '59'
+  },
+  {
+    createdAt: '2025-05-27T02:28:31.343Z',
+    name: 'Troy Witting',
+    amount: '25',
+    description: 'Invalid faker method - random.word',
+    id: '60',
+    title: 'Shopping meat',
+    category: 'food',
+    date: '2025-05-27T07:15:55.640Z',
+    note: 'I will go in the afternoon'
+  },
+  {
+    createdAt: '2025-05-26T10:40:24.962Z',
+    name: 'Virginia Wolf',
+    amount: 23455,
+    description: 'This is the best expensence I have ever spent on my food',
+    id: '61',
+    title: 'Pookie',
+    category: 'Entertainment',
+    date: '2025-05-27T07:15:38.743Z'
+  },
+  {
+    createdAt: '2025-05-27T02:24:38.602Z',
+    name: 'Dr. Nick Lakin',
+    amount: 12,
+    description: 'ds',
+    id: '62',
+    category: 'Food & Dining',
+    date: '2025-05-27',
+    userId: '1'
+  },
+  {
+    createdAt: '2025-05-26T21:57:56.622Z',
+    name: 'Shawn Kris MD',
+    amount: 50,
+    description: 'Fodd',
+    id: '63',
+    category: 'Food & Dining',
+    date: '2025-05-27',
+    userId: '1'
+  },
+  {
+    createdAt: '2025-05-26T10:33:35.601Z',
+    name: 'Kristopher Beatty',
+    amount: 200,
+    description: 'household groceries',
+    id: '64',
+    title: 'groceries',
+    date: '2025-05-27'
+  },
+  {
+    createdAt: '2025-05-27T07:19:54.781Z',
+    name: 'Rent',
+    amount: '1200.00',
+    description: 'House payment for two months',
+    id: '65',
+    userId: '3'
+  },
+  {
+    createdAt: '2025-05-27T00:11:56.415Z',
+    name: 'Bonnie Gleichner',
+    amount: 1121,
+    description: 'fahgsdfgsa',
+    id: '68',
+    userId: '3',
+    category: 'Food1',
+    date: '2025-05-27'
+  },
+]
+
+2. Testing POST new expense:
+POST request to https://67ac71475853dfff53dab929.mockapi.io/api/v1/expenses
+Response: {
+  createdAt: '2025-05-27T00:43:52.215Z',
+  name: 'Tami Funk',
+  amount: 25.99,
+  description: 'Lunch at cafe',
+  id: '93',
+  userId: '1',
+  category: 'Food',
+  date: '2025-05-27T07:38:03.426Z'
+}
+
+3. Testing GET expense by ID (93):
+GET request to https://67ac71475853dfff53dab929.mockapi.io/api/v1/expenses/93
+Response: {
+  createdAt: '2025-05-27T00:43:52.215Z',
+  name: 'Tami Funk',
+  amount: 25.99,
+  description: 'Lunch at cafe',
+  id: '93',
+  userId: '1',
+  category: 'Food',
+  date: '2025-05-27T07:38:03.426Z'
+}
+
+4. Testing DELETE expense by ID (93):
+DELETE request to https://67ac71475853dfff53dab929.mockapi.io/api/v1/expenses/93
+Response: {
+  createdAt: '2025-05-27T00:43:52.215Z',
+  name: 'Tami Funk',
+  amount: 25.99,
+  description: 'Lunch at cafe',
+  id: '93',
+  userId: '1',
+  category: 'Food',
+  date: '2025-05-27T07:38:03.426Z'
+}
+
+5. Verifying expense was deleted (93):
+GET request to https://67ac71475853dfff53dab929.mockapi.io/api/v1/expenses/93
+Request failed: API Error: 404 Not Found
+
+API testing complete!

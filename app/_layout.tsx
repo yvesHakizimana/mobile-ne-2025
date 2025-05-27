@@ -1,29 +1,41 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
-import 'react-native-reanimated';
-
-import { useColorScheme } from '@/hooks/useColorScheme';
+import React, { useEffect, useState } from 'react';
+import { LoadingSpinner } from '../components/common/LoadingSpinner';
+import '../global.css';
+import { useAuthStore } from '../store/authStore';
 
 export default function RootLayout() {
-  const colorScheme = useColorScheme();
-  const [loaded] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
-  });
+  const { initializeAuth, isLoading, isAuthenticated } = useAuthStore();
+  const [isAppReady, setIsAppReady] = useState(false);
 
-  if (!loaded) {
-    // Async font loading only occurs in development.
-    return null;
+  useEffect(() => {
+    const initializeApp = async () => {
+      try {
+        await initializeAuth();
+      } catch (error) {
+        console.error('App initialization error:', error);
+      } finally {
+        setIsAppReady(true);
+      }
+    };
+
+    initializeApp();
+  }, [initializeAuth]);
+
+  if (!isAppReady || isLoading) {
+    return <LoadingSpinner fullScreen message="Loading..." />;
   }
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
-      </Stack>
-      <StatusBar style="auto" />
-    </ThemeProvider>
+    <Stack screenOptions={{ headerShown: false }}>
+      {!isAuthenticated ? (
+        <>
+          <Stack.Screen name="welcome" />
+          <Stack.Screen name="(auth)" />
+        </>
+      ) : (
+        <Stack.Screen name="(tabs)" />
+      )}
+    </Stack>
   );
 }

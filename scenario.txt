@@ -1,0 +1,45 @@
+Project Description
+ABCD Ltd is a software development company based in Kigali City.The company specializes in creating innovative
+software solutions to help individuals and businesses manage their finances better.
+ABCD LTD recently won the tender to develop a Personal finance tracker mobile application.
+As part of the mobile application development team, your role is to create a cross platform mobile application
+that will be compatible with Android and iOS platforms.
+
+The app should enable users to track their daily expenses, set budgtes , receive notificatons
+for budget limits, visualize their spending habits on the dashboard. The application should work 
+seamlessly on both Android and iOS platforms.
+
+The app must include basic functionalities for data input, storage and retriveal 
+while providing a user-friendly interface that adhres to the industry standards
+using 
+https://mockapi.io/projects/7ac71475853dfff53dab92a endpoints below to manage expenses and users
+respectively
+
+https://67ac71475853dfff53dab929.mockapi/api/v1/users
+https://67ac71475853dfff53dab929.mockapi/api/v1/expenses
+
+As a mobile application developer, you are tasked to develop Personal finance tracker mobile app. As
+described below.
+
+1. task1
+allow users to login using valid username and password found in users
+GET API> /users?username=example@gmail.com
+
+2. task2
+user creates new expense using post Api >/expenses
+
+3. task3
+User opens an expense created above and show its details using GET api
+/expenses/{expenseId}
+
+4. Display all expenses
+using all expenses using API get /expenses
+
+5. Delete a specific using DELETE API >/expenses/{expenseId}
+
+technical specifications
+. Must be build using react native
+. input must be validated
+. handle errors and validations in case of any error or exception users should see relevant message of 
+what wrong
+. api should be done using axios library
