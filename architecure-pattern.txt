@@ -1,0 +1,13 @@
+┌─────────────────────────────────────────┐
+│                 UI Layer                │
+│  (Screens, Components, Navigation)      │
+├─────────────────────────────────────────┤
+│              Business Logic             │
+│         (Zustand Stores)                │
+├─────────────────────────────────────────┤
+│              Services Layer             │
+│    (API Services, Local Storage)        │
+├─────────────────────────────────────────┤
+│               Data Layer                │
+│   (AsyncStorage, API endpoints)         │
+└─────────────────────────────────────────┘

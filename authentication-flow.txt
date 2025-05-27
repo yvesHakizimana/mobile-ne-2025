@@ -1,0 +1,5 @@
+app/
+├── index.tsx                    # Welcome/Onboarding Screen
+└── (auth)/
+    ├── _layout.tsx             # Auth layout wrapper
+    └── login.tsx               # Login Screen
